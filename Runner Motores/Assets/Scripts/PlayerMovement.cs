@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public int JumpForce;
     public int speed = 7;
     public Rigidbody rb;
+    
     
     void Start()
     {
@@ -16,18 +18,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space"))
         {
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, JumpForce, 0));
         }
-
-        this.GetComponent<Rigidbody>().velocity = new Vector3(0, speed, this.GetComponent<Rigidbody>().velocity.y);
-    }*/
     }
 
     private void FixedUpdate()
     {
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMove);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (CompareTag("Obstacle"))
+        {
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("Si le pegué");
+        }
     }
 }
