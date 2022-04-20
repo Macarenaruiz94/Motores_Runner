@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public Text timerText;
     float startTime;
-    bool meta = false;
     
     
     void Start()
@@ -22,15 +21,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (meta)
-            return;
-
-        float t = Time.time - startTime;
+       float t = Time.time - startTime;
 
         string minutes = ((int)t / 60).ToString();
         string seconds = (t % 60).ToString("f2");
 
         timerText.text = minutes + ":" + seconds;
+
+
         if (Input.GetKeyDown("space"))
         {
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, JumpForce, 0));
@@ -49,11 +47,5 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    public void Meta()
-    {
-        meta = true;
-        timerText.color = Color.green;
     }
 }
