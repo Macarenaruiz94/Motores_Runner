@@ -32,10 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CompareTag("Obstacle"))
+        if (collision.gameObject.name == "Obstaculo")
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("Si le pegué");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
